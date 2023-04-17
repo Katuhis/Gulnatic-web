@@ -1,22 +1,20 @@
 import { FC } from 'react'
+import { InferGetStaticPropsType } from 'next'
+import { getStaticProps } from '@/pages/admin/versions/[versionNumber]'
 import AdminLayout from '@/components/common/AdminLayout'
-import IVersion from '@/interfaces/IVersion'
+import AdminVersionPageContent from './AdminVersionPageContent'
 import useStyles from './AdminVersionPage.styles'
 
-interface IProps {
-  version: IVersion
-}
+type TProps = InferGetStaticPropsType<typeof getStaticProps>
 
-const AdminVersionPage: FC<IProps> = ({
-  version
-}) => {
+const AdminVersionPage: FC<TProps> = (props) => {
   const styles = useStyles()
 
   return (
     <AdminLayout className={styles.root}>
       Admin Version Page
       <div>
-        version number: {version.number}
+        <AdminVersionPageContent version={props.version} />
       </div>
     </AdminLayout>
   )

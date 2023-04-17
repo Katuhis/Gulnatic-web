@@ -1,6 +1,6 @@
 import { FC } from 'react'
-import Link from 'next/link'
 import AdminLayout from '@/components/common/AdminLayout'
+import AdminHomePageContent from './AdminHomePageContent'
 import useStyles from './AdminHomePage.styles'
 
 const AdminHomePage: FC = () => {
@@ -9,7 +9,9 @@ const AdminHomePage: FC = () => {
   return (
     <AdminLayout className={styles.root}>
       Admin Home Page
-      <Link href="/admin/champion">to Admin Champion Page</Link>
+      <div>
+        <AdminHomePageContent />
+      </div>
     </AdminLayout>
   )
 }

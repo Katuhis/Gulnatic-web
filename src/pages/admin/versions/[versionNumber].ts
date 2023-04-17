@@ -1,22 +1,29 @@
-interface IContext {
-  params: {
-    versionNumber : string
-  }
+import { GetStaticPropsContext, GetStaticPropsResult, GetStaticPathsResult } from 'next'
+import { ParsedUrlQuery } from 'querystring'
+import api from '@/api'
+import IVersion from '@/interfaces/IVersion'
+
+interface IGetStaticPropsContext extends ParsedUrlQuery {
+  versionNumber: string
 }
 
-export const getStaticProps = async (context: IContext) => {
-  const { versionNumber } = context.params
-  const response = await fetch(`/api/versions/${versionNumber}`)
-  const version = await response.json()
+interface IGetStaticPropsResult {
+  version: IVersion
+}
+
+export const getStaticProps = async (
+  context: GetStaticPropsContext<IGetStaticPropsContext>
+): Promise<GetStaticPropsResult<IGetStaticPropsResult>> => {
+  const { versionNumber } = context.params as IGetStaticPropsContext
+  const version = await api.getVersion(versionNumber)
 
   return {
     props: { version }
   }
 }
 
-export const getStaticPaths = async () => {
-  const response = await fetch('/api/versions')
-  const versions = await response.json()
+export const getStaticPaths = async (): Promise<GetStaticPathsResult> => {
+  const versions = await api.getVersions()
 
   const paths = versions.map((version) => ({
     params: {

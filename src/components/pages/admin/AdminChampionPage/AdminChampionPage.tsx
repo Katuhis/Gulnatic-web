@@ -1,22 +1,20 @@
 import { FC } from 'react'
+import { InferGetStaticPropsType } from 'next'
+import { getStaticProps } from '@/pages/admin/versions/champions/[championId]'
 import AdminLayout from '@/components/common/AdminLayout'
-import IChampion from '@/interfaces/IChampion'
+import AdminChampionPageContent from './AdminChampionPageContent'
 import useStyles from './AdminChampionPage.styles'
 
-interface IProps {
-  champion: IChampion
-}
+type TProps = InferGetStaticPropsType<typeof getStaticProps>
 
-const AdminChampionPage: FC<IProps> = ({
-  champion
-}) => {
+const AdminChampionPage: FC<TProps> = (props) => {
   const styles = useStyles()
 
   return (
     <AdminLayout className={styles.root}>
       Admin Champion Page
       <div>
-        champion id: {champion.id}
+        <AdminChampionPageContent champion={props.champion} />
       </div>
     </AdminLayout>
   )
