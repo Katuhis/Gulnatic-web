@@ -1,24 +1,9 @@
-import axios, { CreateAxiosDefaults } from 'axios'
-import getVersion from './endpoints/getVersion'
-import getVersions from './endpoints/getVersions'
-import getChampion from './endpoints/getChampion'
-import getChampions from './endpoints/getChampions'
-
-const instance = axios.create({
-  baseURL: process.env.API_URL,
-  headers: {
-    Authorization: 'Some auth token'
-  }
-} as CreateAxiosDefaults)
+import app from './app'
+import admin from './admin'
 
 const api = {
-  getVersion,
-  getVersions,
-  getChampion,
-  getChampions
+  app,
+  admin
 }
 
-export {
-  instance
-}
 export default api

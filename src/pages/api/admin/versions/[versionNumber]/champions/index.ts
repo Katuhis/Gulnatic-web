@@ -6,9 +6,12 @@ const handler = (
   response: NextApiResponse<IChampion[]>
 ): void => {
   const champion1 = {
-    id: 'Champion 1'
+    id: 'Champion-1'
   }
-  const champions = [champion1]
+  const champion2 = {
+    id: 'Champion-2'
+  }
+  const champions = [champion1, champion2]
 
   response.status(200).json(champions)
 }

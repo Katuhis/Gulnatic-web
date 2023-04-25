@@ -1,21 +1,28 @@
-import { FC } from 'react'
 import { InferGetStaticPropsType } from 'next'
-import { getStaticProps } from '@/pages/admin/versions/champions/[championId]'
+import { getStaticProps } from '@/pages/admin/versions/[versionNumber]/champions/[championId]'
+import TPage from '@/interfaces/TPage'
 import AdminLayout from '@/components/common/AdminLayout'
-import AdminChampionPageContent from './AdminChampionPageContent'
 import useStyles from './AdminChampionPage.styles'
 
 type TProps = InferGetStaticPropsType<typeof getStaticProps>
 
-const AdminChampionPage: FC<TProps> = (props) => {
+const AdminChampionPage: TPage<TProps> = (props) => {
   const styles = useStyles()
 
   return (
-    <AdminLayout className={styles.root}>
+    <div className={styles.root}>
       Admin Champion Page
       <div>
-        <AdminChampionPageContent champion={props.champion} />
+        champion id: {props.champion.id}
       </div>
+    </div>
+  )
+}
+
+AdminChampionPage.getLayout = (page) => {
+  return (
+    <AdminLayout>
+      {page}
     </AdminLayout>
   )
 }

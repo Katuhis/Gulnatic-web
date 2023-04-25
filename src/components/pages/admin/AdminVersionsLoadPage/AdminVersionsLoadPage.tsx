@@ -1,17 +1,21 @@
-import { FC } from 'react'
+import TPage from '@/interfaces/TPage'
 import AdminLayout from '@/components/common/AdminLayout'
-import AdminVersionsLoadPageContent from './AdminVersionsLoadPageContent'
 import useStyles from './AdminVersionsLoadPage.styles'
 
-const AdminVersionsLoadPage: FC = () => {
+const AdminVersionsLoadPage: TPage = () => {
   const styles = useStyles()
 
   return (
-    <AdminLayout className={styles.root}>
-      Admin Versions Load Page
-      <div>
-        <AdminVersionsLoadPageContent />
-      </div>
+    <div className={styles.root}>
+      Admin Versions Page
+    </div>
+  )
+}
+
+AdminVersionsLoadPage.getLayout = (page) => {
+  return (
+    <AdminLayout>
+      {page}
     </AdminLayout>
   )
 }

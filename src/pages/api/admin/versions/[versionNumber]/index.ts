@@ -3,14 +3,14 @@ import IVersion from '@/interfaces/IVersion'
 
 const handler = (
   request: NextApiRequest,
-  response: NextApiResponse<IVersion[]>
+  response: NextApiResponse<IVersion>
 ): void => {
-  const version1 = {
-    number: 'Version 1'
+  const versionNumber = request.query.versionNumber as string
+  const version = {
+    number: versionNumber
   }
-  const versions = [version1]
 
-  response.status(200).json(versions)
+  response.status(200).json(version)
 }
 
 export default handler

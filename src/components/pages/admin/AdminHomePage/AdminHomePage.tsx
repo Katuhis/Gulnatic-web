@@ -1,17 +1,25 @@
-import { FC } from 'react'
+import TPage from '@/interfaces/TPage'
 import AdminLayout from '@/components/common/AdminLayout'
-import AdminHomePageContent from './AdminHomePageContent'
+import Link from 'next/link'
 import useStyles from './AdminHomePage.styles'
 
-const AdminHomePage: FC = () => {
+const AdminHomePage: TPage = () => {
   const styles = useStyles()
 
   return (
-    <AdminLayout className={styles.root}>
+    <div className={styles.root}>
       Admin Home Page
       <div>
-        <AdminHomePageContent />
+        <Link href="/admin/versions">to Admin Versions Page</Link>
       </div>
+    </div>
+  )
+}
+
+AdminHomePage.getLayout = (page) => {
+  return (
+    <AdminLayout>
+      {page}
     </AdminLayout>
   )
 }

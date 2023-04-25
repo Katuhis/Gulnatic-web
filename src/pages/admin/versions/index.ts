@@ -1,5 +1,5 @@
 import { GetStaticPropsResult } from 'next'
-import api from '@/api'
+import api from '@/api/admin'
 
 type TGetStaticPropsResult = {
   redirect: {
@@ -14,9 +14,9 @@ export const getStaticProps = async (
   let destination
 
   if (versions.length) {
-    destination = `/versions/${versions[0].number}`
+    destination = `/admin/versions/${versions[0].number}`
   } else {
-    destination = '/versions/load'
+    destination = '/admin/versions/load'
   }
 
   return {

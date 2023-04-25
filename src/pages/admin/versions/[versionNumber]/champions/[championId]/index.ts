@@ -1,6 +1,6 @@
 import { GetStaticPropsContext, GetStaticPropsResult, GetStaticPathsResult } from 'next'
 import { ParsedUrlQuery } from 'querystring'
-import api from '@/api'
+import api from '@/api/admin'
 import IChampion from '@/interfaces/IChampion'
 
 interface IGetStaticPropsContext extends ParsedUrlQuery {
@@ -45,7 +45,7 @@ export const getStaticPaths = async (): Promise<GetStaticPathsResult> => {
 
   return {
     paths: paths.flat(),
-    fallback: false
+    fallback: 'blocking'
   }
 }
 

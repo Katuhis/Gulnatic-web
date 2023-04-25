@@ -10,7 +10,5 @@ export default createUseStyles({
     margin: 0,
     minHeight: '100vh',
     display: 'flex'
-  },
-  main: {
   }
 })

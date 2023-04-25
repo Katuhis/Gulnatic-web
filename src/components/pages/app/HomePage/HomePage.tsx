@@ -1,19 +1,21 @@
-import { FC } from 'react'
+import TPage from '@/interfaces/TPage'
 import Layout from '@/components/common/Layout'
 import useStyles from './HomePage.styles'
 
-const HomePage: FC = () => {
+const HomePage: TPage = () => {
   const styles = useStyles()
 
   return (
-    <Layout
-      className={styles.root}
-      meta={{
-        title: '',
-        description: ''
-      }}
-    >
+    <div className={styles.root}>
       Home Page
+    </div>
+  )
+}
+
+HomePage.getLayout = (page) => {
+  return (
+    <Layout>
+      {page}
     </Layout>
   )
 }

@@ -1,6 +1,6 @@
-import { GetStaticPropsContext, GetStaticPropsResult } from 'next'
+import { GetStaticPropsContext, GetStaticPropsResult, GetStaticPathsResult } from 'next'
 import { ParsedUrlQuery } from 'querystring'
-import api from '@/api'
+import api from '@/api/admin'
 
 interface IGetStaticPropsContext extends ParsedUrlQuery {
   versionNumber: string
@@ -17,7 +17,7 @@ export const getStaticProps = async (
   const champions = await api.getChampions(versionNumber)
 
   if (champions.length) {
-    const destination = `/versions/${versionNumber}/champions/${champions[0].id}`
+    const destination = `/admin/versions/${versionNumber}/champions/${champions[0].id}`
 
     return {
       redirect: {
@@ -31,6 +31,13 @@ export const getStaticProps = async (
     props: {
       message: 'no champions in this version'
     }
+  }
+}
+
+export const getStaticPaths = async (): Promise<GetStaticPathsResult> => {
+  return {
+    paths: [],
+    fallback: 'blocking'
   }
 }
 

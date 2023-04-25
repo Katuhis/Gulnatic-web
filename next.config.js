@@ -1,10 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
   distDir: 'build',
-  experimental: {
-    forceSwcTransforms: true
-  }
+  reactStrictMode: true
 }
 
 module.exports = nextConfig

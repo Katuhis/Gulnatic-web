@@ -1,5 +1,4 @@
 import { FC, ReactNode } from 'react'
-import clsx from 'clsx'
 import Head from 'next/head'
 import useStyles from './Layout.styles'
 
@@ -8,31 +7,32 @@ interface IProps {
     title?: string
     description?: string
   }
-  className?: string
   children: ReactNode
 }
 
 const Layout: FC<IProps> = ({
   meta,
-  className,
   children
 }) => {
-  const styles = useStyles()
+  useStyles()
 
   return (
-    <>
+    <div>
       <Head>
-        <title>TeKoken</title>
+        <title>Gulnatic</title>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="title" content={meta?.title || 'TeKoken'} />
-        <meta name="description" content={meta?.description || 'TeKoken'} />
+        <meta name="title" content={meta?.title || 'Gulnatic'} />
+        <meta name="description" content={meta?.description || 'Gulnatic'} />
       </Head>
 
-      <main className={clsx(styles.main, className)}>
+      <header>
+        App
+      </header>
+      <main>
         {children}
       </main>
-    </>
+    </div>
   )
 }
 
